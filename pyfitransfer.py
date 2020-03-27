@@ -25,6 +25,7 @@ class PyFiTransfer:
 # From the config , get the source file path and file details and use the cofig destination details to transfer 
 # file via socket 
 if __name__ == "__main__":
+    
     try:
         configObj = ConfigPyFiTransfer()
         pft = PyFiTransfer()

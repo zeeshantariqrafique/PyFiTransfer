@@ -2,7 +2,7 @@
 
 import socketserver
 
-class socketServer(socketserver.BaseRequestHandler):
+class socketServer(socketserver.StreamRequestHandler):
     """
     The RequestHandler class for our server.
 
@@ -13,7 +13,7 @@ class socketServer(socketserver.BaseRequestHandler):
 
     def handle(self):
         try:
-            self.data = self.request.recv(1024).strip()
+            self.data =  self.rfile.readline().strip()
             print("{} wrote:".format(self.client_address[0]))
             #decode() was required to make b'xyz -> xyz
             recvStr = str(self.data.decode('utf-8'))

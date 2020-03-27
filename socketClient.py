@@ -32,8 +32,10 @@ class SocketClient:
             print("Not Conncted to any host")
         else:
             try:
+                print("Sending data to Server")
                 self.socketClient.send(data)
-            except socket.error as err:
+                print("Data Sent to Server")
+            except Exception:
                 print("Error while sending data")
 
     def close(self):
