@@ -4,9 +4,9 @@ socketserver:
 transfer:
   destinationhost: localhost
   destinationport: 9999
-  destinationfolder: "D://destination//"
-  sourcefilename: "data.txt"
-  sourcefilepath: "D://file"
+  destinationfolder: "D:\\destination"
+  sourcefilename: "test.txt"
+  sourcefilepath: "D:\\file"
   sourcefilepattern: NA
   realtimeflag: "Y"
 
