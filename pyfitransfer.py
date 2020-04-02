@@ -3,6 +3,20 @@ import argparse
 from socketClient import SocketClient
 from configReader import ConfigPyFiTransfer
 
+def user_input():
+    parser = argparse.ArgumentParser(description='use --help for understanding params')
+
+    parser.add_argument('-cf','--config_file', default='transfer.yml', help="Enter the fully qualified path to read config")
+    parser.add_argument('-ip','--dest_ip', default='localhost', help="Enter the destination IP address")
+    parser.add_argument('-port','--dest_port', default='9999', help="Enter the destination port address")
+    parser.add_argument('-p', '--dest_file_path', default='', help="Enter the destination path for file transfer")
+    parser.add_argument('-f', '--source_file', default='', help="Enter the file path to be entered from localhost address")
+    args = parser.parse_args()
+    arguments= vars(args)
+    records =[]
+    records.append(arguments)
+    return records
+
 
 class PyFiTransfer:
     
@@ -29,13 +43,7 @@ class PyFiTransfer:
 def main():
     try:
 
-        parser = argparse.ArgumentParser(description='use --help for understanding params')
-
-        parser.add_argument('-cf','--config_file', default='transfer.yml', help="Enter the fully qualified path to read config")
-        parser.add_argument('-ip','--dest_ip', default='localhost', help="Enter the destination IP address")
-        parser.add_argument('-port','--dest_port', default='9999', help="Enter the destination port address")
-        parser.add_argument('-p', '--dest_file_path', default='', help="Enter the destination path for file transfer")
-        parser.add_argument('-f', '--source_file', default='', help="Enter the file path to be entered from localhost address")
+        records = user_input()
         configObj = ConfigPyFiTransfer()
         pft = PyFiTransfer()
         sock = SocketClient()
