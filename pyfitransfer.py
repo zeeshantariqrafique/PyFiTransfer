@@ -1,4 +1,5 @@
 import os
+import argparse
 from socketClient import SocketClient
 from configReader import ConfigPyFiTransfer
 
@@ -24,9 +25,17 @@ class PyFiTransfer:
 # populate the config object with the configuration in file transfer.yml (Look at configReader.py)
 # From the config , get the source file path and file details and use the cofig destination details to transfer 
 # file via socket 
-if __name__ == "__main__":
-    
+#------------------Main Program---------------#
+def main():
     try:
+
+        parser = argparse.ArgumentParser(description='use --help for understanding params')
+
+        parser.add_argument('-cf','--config_file', default='transfer.yml', help="Enter the fully qualified path to read config")
+        parser.add_argument('-ip','--dest_ip', default='localhost', help="Enter the destination IP address")
+        parser.add_argument('-port','--dest_port', default='9999', help="Enter the destination port address")
+        parser.add_argument('-p', '--dest_file_path', default='', help="Enter the destination path for file transfer")
+        parser.add_argument('-f', '--source_file', default='', help="Enter the file path to be entered from localhost address")
         configObj = ConfigPyFiTransfer()
         pft = PyFiTransfer()
         sock = SocketClient()
@@ -42,9 +51,6 @@ if __name__ == "__main__":
         
     finally:
         sock.close()
-        srcfile.close()
 
-
-
-
-
+if __name__ == "__main__":
+    main()
